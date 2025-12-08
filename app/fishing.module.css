@@ -1,0 +1,1484 @@
+/* FishOnBase - Clean Premium UI */
+
+/* ===== Container ===== */
+.container {
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #0a1628;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  font-family: 'Inter', -apple-system, sans-serif;
+  position: relative;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Loading */
+.loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #67e8f9;
+  font-size: 16px;
+}
+
+.loadingFish {
+  font-size: 48px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* ===== Intro Screen - Premium Design ===== */
+.introScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.introBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0c4a6e 0%, #0e7490 30%, #164e63 60%, #0a1628 100%);
+}
+
+/* Light Rays */
+.lightRays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.lightRay {
+  position: absolute;
+  top: -50px;
+  width: 60px;
+  height: 300px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(15deg);
+  animation: rayMove 8s ease-in-out infinite;
+}
+
+.lightRay:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.lightRay:nth-child(2) {
+  left: 25%;
+  width: 40px;
+  animation-delay: 1.5s;
+}
+
+.lightRay:nth-child(3) {
+  left: 50%;
+  width: 80px;
+  animation-delay: 0.8s;
+}
+
+.lightRay:nth-child(4) {
+  left: 70%;
+  width: 50px;
+  animation-delay: 2.2s;
+}
+
+.lightRay:nth-child(5) {
+  left: 85%;
+  animation-delay: 1s;
+}
+
+@keyframes rayMove {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: rotate(15deg) translateY(0);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: rotate(15deg) translateY(20px);
+  }
+}
+
+/* Waves */
+.introWaves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+}
+
+.introWave {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 50px;
+  background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.2) 25%, rgba(6, 182, 212, 0.35) 50%, rgba(6, 182, 212, 0.2) 75%, transparent 100%);
+  animation: wave 5s linear infinite;
+}
+
+.introWave:nth-child(2) {
+  bottom: 30px;
+  animation-delay: -1.5s;
+  opacity: 0.7;
+}
+
+.introWave:nth-child(3) {
+  bottom: 60px;
+  animation-delay: -3s;
+  opacity: 0.4;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Bubbles */
+.introBubbles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.introBubble {
+  position: absolute;
+  bottom: -10px;
+  left: calc(8% + var(--i) * 7%);
+  width: calc(3px + var(--i) * 1px);
+  height: calc(3px + var(--i) * 1px);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+  border-radius: 50%;
+  animation: rise 8s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(-600px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Swimming Fish - Smooth with JS */
+.introFishContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.introSwimFish {
+  position: absolute;
+  transition: transform 0.3s ease-out;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  animation: fishFloat 3s ease-in-out infinite;
+}
+
+@keyframes fishFloat {
+
+  0%,
+  100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -5px;
+  }
+}
+
+/* Content - Simple Style (no frame) */
+.introContent {
+  position: relative;
+  z-index: 20;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.introLogo {
+  margin-bottom: 36px;
+}
+
+.introEmoji {
+  font-size: 72px;
+  display: block;
+  margin-bottom: 16px;
+  animation: emojiPulse 2s ease-in-out infinite;
+}
+
+@keyframes emojiPulse {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(-3deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(3deg);
+  }
+}
+
+.introLogo {
+  margin-bottom: 28px;
+}
+
+.introEmoji {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 12px;
+  animation: emojiPulse 2s ease-in-out infinite;
+}
+
+@keyframes emojiPulse {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(-5deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.introTitle {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 8px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.5px;
+}
+
+.introSubtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.introFeatures {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.introFeature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.featureIcon {
+  font-size: 24px;
+}
+
+.featureText {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.introButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  border: none;
+  padding: 16px 44px;
+  border-radius: 24px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
+  transition: all 0.2s ease;
+}
+
+.introButton:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+}
+
+.introButtonText {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+.introButtonIcon {
+  font-size: 20px;
+  color: white;
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 10px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+.levelBadge {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  padding: 6px 12px;
+  border-radius: 14px;
+}
+
+.levelBadge.levelUp {
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.levelNumber {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.xpContainer {
+  flex: 1;
+  max-width: 80px;
+}
+
+.xpBar {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.xpFill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.energyDisplay {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 6px 10px;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+
+.energyIcon {
+  font-size: 14px;
+}
+
+.energyCount {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+.tokenDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tokenMain {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.tokenIcon {
+  font-size: 14px;
+}
+
+.tokenAmount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e1b4b;
+}
+
+.hourlyIncome {
+  font-size: 10px;
+  color: #22c55e;
+  margin-top: 2px;
+}
+
+.levelUpOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+}
+
+.levelUpContent {
+  text-align: center;
+  animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.levelUpText {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fbbf24;
+  display: block;
+}
+
+.levelUpNumber {
+  font-size: 18px;
+  color: white;
+}
+
+/* ===== Fishing Scene ===== */
+.fishingScene {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sky */
+.sky {
+  height: 45%;
+  background: linear-gradient(180deg, #0ea5e9 0%, #38bdf8 40%, #7dd3fc 100%);
+  position: relative;
+}
+
+.sun {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #fef08a 0%, #fbbf24 50%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(251, 191, 36, 0.6);
+}
+
+.clouds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  animation: cloudDrift 20s linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 35px;
+  height: 35px;
+  top: -15px;
+  left: 15px;
+}
+
+.cloud::after {
+  width: 25px;
+  height: 25px;
+  top: -10px;
+  left: 40px;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(500px);
+  }
+}
+
+/* Sea */
+.sea {
+  flex: 1;
+  background: linear-gradient(180deg, #0369a1 0%, #0c4a6e 40%, #082f49 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.seaWaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 15px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(125, 211, 252, 0.3) 25%,
+      rgba(56, 189, 248, 0.4) 50%,
+      rgba(125, 211, 252, 0.3) 75%,
+      transparent 100%);
+  animation: waveMove 4s linear infinite;
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.seaBubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.seaBubble {
+  position: absolute;
+  bottom: -10px;
+  left: calc(10% + var(--i) * 11%);
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), transparent);
+  border-radius: 50%;
+  animation: bubbleUp 5s ease-in infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+}
+
+.bgFish span {
+  position: absolute;
+  top: var(--y);
+  font-size: 20px;
+  opacity: 0.3;
+  animation: bgSwim var(--d) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes bgSwim {
+  0% {
+    left: -30px;
+    transform: scaleX(1);
+  }
+
+  49% {
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: 110%;
+    transform: scaleX(-1);
+  }
+
+  99% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -30px;
+  }
+}
+
+.targetFish {
+  position: absolute;
+  font-size: 36px;
+  transform: scaleX(-1);
+  animation: fishWiggle 0.8s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes fishWiggle {
+
+  0%,
+  100% {
+    transform: scaleX(-1) rotate(-3deg);
+  }
+
+  50% {
+    transform: scaleX(-1) rotate(3deg);
+  }
+}
+
+/* Dock & Fisherman */
+.dock {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 10;
+}
+
+.dockWood {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(180deg, #92400e 0%, #78350f 50%, #451a03 100%);
+  border-top: 4px solid #b45309;
+}
+
+.fisherman {
+  position: absolute;
+  bottom: 56%;
+  left: 30px;
+}
+
+.fishermanBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hat {
+  font-size: 20px;
+  margin-bottom: -8px;
+}
+
+.face {
+  font-size: 28px;
+}
+
+.body {
+  font-size: 32px;
+  margin-top: -6px;
+}
+
+.rod {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  transform-origin: left center;
+  transition: transform 0.2s;
+}
+
+.rod.rodCharge {
+  transform: rotate(-20deg);
+}
+
+.rod.rodCast {
+  transform: rotate(30deg);
+}
+
+.rodStick {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #713f12 0%, #92400e 100%);
+  border-radius: 2px;
+}
+
+.fishingLine {
+  position: absolute;
+  top: 2px;
+  right: -2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  transform-origin: left center;
+  transform: rotate(45deg);
+}
+
+.hook {
+  position: absolute;
+  right: -16px;
+  top: -8px;
+  font-size: 16px;
+}
+
+/* Power Bar */
+.powerBar {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.powerBar.show {
+  opacity: 1;
+}
+
+.powerFill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e 0%, #eab308 50%, #ef4444 100%);
+  transition: width 0.05s;
+}
+
+.powerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Catch Overlay */
+.catchOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.catchModal {
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+  width: 85%;
+  max-width: 320px;
+}
+
+.catchHeader {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.catchBarContainer {
+  padding: 4px 0;
+}
+
+.catchBarBg {
+  position: relative;
+  height: 40px;
+  background: #0f172a;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.catchZone {
+  position: absolute;
+  top: 4px;
+  height: calc(100% - 8px);
+  background: linear-gradient(180deg, #22c55e, #16a34a);
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+}
+
+.catchPointer {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: calc(100% - 8px);
+  background: #fbbf24;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+}
+
+.catchTip {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Result Popup */
+.resultPopup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.resultPopup.resultSuccess {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.2), rgba(0, 0, 0, 0.85));
+}
+
+.resultPopup.resultFail {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.2), rgba(0, 0, 0, 0.85));
+}
+
+.resultEmoji {
+  font-size: 56px;
+  animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.resultText {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+.resultRewards {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.resultRewards span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Hints */
+.idleHint {
+  position: absolute;
+  bottom: 30%;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.hintIcon {
+  font-size: 36px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.idleHint span:last-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.noEnergyMsg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.noEnergyMsg span:first-child {
+  font-size: 40px;
+  opacity: 0.5;
+}
+
+.noEnergyMsg span:nth-child(2) {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+
+.noEnergyMsg small {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== Navigation ===== */
+.navigation {
+  display: flex;
+  background: rgba(15, 23, 42, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 6px 10px;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
+}
+
+.navButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+  transition: all 0.2s;
+}
+
+.navButton.active {
+  color: white;
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.navIcon {
+  font-size: 24px;
+}
+
+.navLabel {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ===== Aquarium ===== */
+.aquariumContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0f172a, #1e1b4b);
+  overflow-y: auto;
+  padding: 16px;
+  gap: 16px;
+}
+
+.incomeCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(6, 182, 212, 0.1));
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.incomeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.incomeLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.incomeValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.collectBtn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.collectBtn.disabled {
+  opacity: 0.4;
+}
+
+.collectBtn.collected {
+  background: #16a34a;
+}
+
+.tank {
+  height: 180px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(103, 232, 249, 0.2);
+  box-shadow: 0 0 30px rgba(103, 232, 249, 0.1);
+}
+
+.tankGlass {
+  width: 100%;
+  height: 100%;
+}
+
+.tankWater {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0e7490, #0369a1, #0c4a6e);
+  position: relative;
+  overflow: hidden;
+}
+
+.swimFish {
+  position: absolute;
+  top: var(--y);
+  font-size: 20px;
+  animation: tankSwim var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes tankSwim {
+  0% {
+    left: -30px;
+    transform: scaleX(1);
+  }
+
+  49.9% {
+    transform: scaleX(1);
+  }
+
+  50% {
+    left: calc(100% + 30px);
+    transform: scaleX(-1);
+  }
+
+  99.9% {
+    transform: scaleX(-1);
+  }
+
+  100% {
+    left: -30px;
+  }
+}
+
+.tankBubble {
+  position: absolute;
+  bottom: -8px;
+  left: calc(10% + var(--i) * 15%);
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), transparent);
+  border-radius: 50%;
+  animation: tankBub 3s ease-in infinite;
+  animation-delay: calc(var(--i) * 0.35s);
+}
+
+@keyframes tankBub {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-180px);
+    opacity: 0;
+  }
+}
+
+.tankDecor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.coral,
+.plant {
+  position: absolute;
+  bottom: 5px;
+  font-size: 24px;
+}
+
+.aquaStats {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.aquaStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aquaStatNum {
+  font-size: 18px;
+  font-weight: 700;
+  color: #67e8f9;
+}
+
+.aquaStatLabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.collection {
+  flex: 1;
+}
+
+.collectionHead {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.emptyMsg {
+  text-align: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.emptyMsg span {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.fishGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fishItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.fishIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.fishDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fishName {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.fishRarity {
+  font-size: 11px;
+}
+
+.fishMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.fishCount {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.fishIncome {
+  font-size: 11px;
+  color: #22c55e;
+}
+
+/* ===== Shop ===== */
+.shopContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0f172a, #1e1b4b);
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.shopHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.shopTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.shopBalance {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  padding: 8px 14px;
+  border-radius: 14px;
+}
+
+.shopBalanceIcon {
+  font-size: 16px;
+}
+
+.shopBalanceAmount {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e1b4b;
+}
+
+.upgradeList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.upgradeCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  border-radius: 14px;
+}
+
+.upgradeCard.maxed {
+  opacity: 0.6;
+}
+
+.upgradeIcon {
+  font-size: 28px;
+}
+
+.upgradeInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.upgradeName {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+
+.upgradeDesc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.upgradeLevel {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.levelDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.levelDot.filled {
+  background: #8b5cf6;
+}
+
+.buyButton {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.buyButton.disabled {
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.buyCost {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+.buyMaxed {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.shopTip {
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Test Button */
+.testButton {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.2s;
+}
+
+.testButton:active {
+  transform: scale(0.95);
+}
+
+/* Realistic Fish in Aquarium */
+.realisticFish {
+  position: absolute;
+  transition: left 0.1s linear, top 0.1s linear;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Tank Sand */
+.tankSand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(180deg, #d4a76a 0%, #c4956a 50%, #b8845a 100%);
+  border-radius: 0 0 14px 14px;
+}
+
+/* Desktop */
+@media (min-width: 431px) {
+  .container {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 80px rgba(139, 92, 246, 0.1);
+  }
+}
