@@ -16,21 +16,21 @@ export default function Navigation({ activeTab, onTabChange }: NavigationProps) 
                 onClick={() => onTabChange('fishing')}
             >
                 <span className={styles.navIcon}>🎣</span>
-                <span className={styles.navLabel}>Balık Tut</span>
+                <span className={styles.navLabel}>Fish</span>
             </button>
             <button
                 className={`${styles.navButton} ${activeTab === 'aquarium' ? styles.active : ''}`}
                 onClick={() => onTabChange('aquarium')}
             >
                 <span className={styles.navIcon}>🐠</span>
-                <span className={styles.navLabel}>Akvaryum</span>
+                <span className={styles.navLabel}>Aquarium</span>
             </button>
             <button
                 className={`${styles.navButton} ${activeTab === 'shop' ? styles.active : ''}`}
                 onClick={() => onTabChange('shop')}
             >
                 <span className={styles.navIcon}>🛒</span>
-                <span className={styles.navLabel}>Mağaza</span>
+                <span className={styles.navLabel}>Shop</span>
             </button>
         </nav>
     );

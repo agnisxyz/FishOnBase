@@ -21,7 +21,7 @@ export default function Shop({ fishTokens, upgrades, onPurchase }: ShopProps) {
     return (
         <div className={styles.shopContainer}>
             <div className={styles.shopHeader}>
-                <h2 className={styles.shopTitle}>🛒 Mağaza</h2>
+                <h2 className={styles.shopTitle}>🛒 Shop</h2>
                 <div className={styles.shopBalance}>
                     <span className={styles.shopBalanceIcon}>🪙</span>
                     <span className={styles.shopBalanceAmount}>{fishTokens.toLocaleString()}</span>
@@ -74,7 +74,7 @@ export default function Shop({ fishTokens, upgrades, onPurchase }: ShopProps) {
             </div>
 
             <div className={styles.shopTip}>
-                💡 Yükseltmeler balık tutmayı kolaylaştırır!
+                💡 Upgrades make fishing easier!
             </div>
         </div>
     );

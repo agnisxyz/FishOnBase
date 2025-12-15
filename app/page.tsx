@@ -33,7 +33,7 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.loading}>
           <span className={styles.loadingFish}>🐟</span>
-          <span>Yükleniyor...</span>
+          <span>Loading...</span>
         </div>
       </div>
     );

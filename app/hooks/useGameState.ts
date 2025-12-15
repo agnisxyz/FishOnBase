@@ -12,6 +12,7 @@ export interface FishType {
     xp: number;
     hourlyIncome: number;
     rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
+    emoji: string;
 }
 
 // Caught fish with timestamp
@@ -47,23 +48,23 @@ export interface GameState {
     lastIncomeCollect: number;
 }
 
-// Fish types with rewards and hourly income
+// Fish types with rewards and hourly income - each with unique emoji
 export const FISH_TYPES: FishType[] = [
-    { id: 'goldfish', name: 'Goldfish', color: '#FFD700', secondaryColor: '#FFA500', fishToken: 5, xp: 10, hourlyIncome: 1, rarity: 'common' },
-    { id: 'clownfish', name: 'Clownfish', color: '#FF6B6B', secondaryColor: '#FF8E53', fishToken: 8, xp: 15, hourlyIncome: 2, rarity: 'common' },
-    { id: 'salmon', name: 'Salmon', color: '#FA8072', secondaryColor: '#E9967A', fishToken: 15, xp: 25, hourlyIncome: 4, rarity: 'uncommon' },
-    { id: 'tropical', name: 'Tropical', color: '#9B59B6', secondaryColor: '#8E44AD', fishToken: 20, xp: 35, hourlyIncome: 6, rarity: 'rare' },
-    { id: 'tuna', name: 'Tuna', color: '#4682B4', secondaryColor: '#5F9EA0', fishToken: 30, xp: 50, hourlyIncome: 10, rarity: 'rare' },
-    { id: 'angelfish', name: 'Angelfish', color: '#00CED1', secondaryColor: '#20B2AA', fishToken: 45, xp: 75, hourlyIncome: 15, rarity: 'epic' },
-    { id: 'swordfish', name: 'Swordfish', color: '#4169E1', secondaryColor: '#1E90FF', fishToken: 75, xp: 120, hourlyIncome: 25, rarity: 'legendary' },
+    { id: 'goldfish', name: 'Goldfish', color: '#FFD700', secondaryColor: '#FFA500', fishToken: 5, xp: 10, hourlyIncome: 1, rarity: 'common', emoji: '🐟' },
+    { id: 'clownfish', name: 'Clownfish', color: '#FF6B6B', secondaryColor: '#FF8E53', fishToken: 8, xp: 15, hourlyIncome: 2, rarity: 'common', emoji: '🐠' },
+    { id: 'salmon', name: 'Salmon', color: '#FA8072', secondaryColor: '#E9967A', fishToken: 15, xp: 25, hourlyIncome: 4, rarity: 'uncommon', emoji: '🐡' },
+    { id: 'tropical', name: 'Tropical', color: '#9B59B6', secondaryColor: '#8E44AD', fishToken: 20, xp: 35, hourlyIncome: 6, rarity: 'rare', emoji: '🦑' },
+    { id: 'tuna', name: 'Tuna', color: '#4682B4', secondaryColor: '#5F9EA0', fishToken: 30, xp: 50, hourlyIncome: 10, rarity: 'rare', emoji: '🦐' },
+    { id: 'angelfish', name: 'Angelfish', color: '#00CED1', secondaryColor: '#20B2AA', fishToken: 45, xp: 75, hourlyIncome: 15, rarity: 'epic', emoji: '🐬' },
+    { id: 'swordfish', name: 'Swordfish', color: '#4169E1', secondaryColor: '#1E90FF', fishToken: 75, xp: 120, hourlyIncome: 25, rarity: 'legendary', emoji: '🦈' },
 ];
 
-// Upgrade definitions
+// Upgrade definitions - English
 export const UPGRADES: Upgrade[] = [
     {
         id: 'betterRod',
-        name: 'Güçlü Olta',
-        description: 'Hedef alanı %15 büyür',
+        name: 'Power Rod',
+        description: 'Target zone +15% larger',
         icon: '🎣',
         maxLevel: 5,
         baseCost: 50,
@@ -72,8 +73,8 @@ export const UPGRADES: Upgrade[] = [
     },
     {
         id: 'luckyCharm',
-        name: 'Şans Tılsımı',
-        description: 'Nadir balık şansı +10%',
+        name: 'Lucky Charm',
+        description: 'Rare fish chance +10%',
         icon: '🍀',
         maxLevel: 5,
         baseCost: 100,
@@ -82,8 +83,8 @@ export const UPGRADES: Upgrade[] = [
     },
     {
         id: 'energyBoost',
-        name: 'Enerji Artışı',
-        description: 'Maksimum enerji +2',
+        name: 'Energy Boost',
+        description: 'Max energy +2',
         icon: '⚡',
         maxLevel: 5,
         baseCost: 75,
@@ -92,8 +93,8 @@ export const UPGRADES: Upgrade[] = [
     },
     {
         id: 'fastRecharge',
-        name: 'Hızlı Şarj',
-        description: 'Enerji %20 hızlı dolar',
+        name: 'Fast Recharge',
+        description: 'Energy refills 20% faster',
         icon: '🔋',
         maxLevel: 5,
         baseCost: 80,

@@ -25,56 +25,51 @@ export default function Header({
     onAddTestGold
 }: HeaderProps) {
     return (
-        <header className={styles.header}>
-            {/* Level & XP */}
-            <div className={styles.headerLeft}>
-                <div className={`${styles.levelBadge} ${levelUpAnimation ? styles.levelUp : ''}`}>
-                    <span className={styles.levelNumber}>Lv.{level}</span>
-                </div>
-                <div className={styles.xpContainer}>
-                    <div className={styles.xpBar}>
-                        <div
-                            className={styles.xpFill}
-                            style={{ width: `${xpProgress.percentage}%` }}
-                        />
-                    </div>
+        <header className={styles.headerBar}>
+            {/* Left side - Level */}
+            <div className={styles.headerSection}>
+                <div className={`${styles.levelPill} ${levelUpAnimation ? styles.levelUpAnim : ''}`}>
+                    <span className={styles.levelStar}>⭐</span>
+                    <span className={styles.levelNum}>{level}</span>
                 </div>
             </div>
 
-            {/* Energy */}
-            <div className={styles.energyDisplay}>
-                <span className={styles.energyIcon}>⚡</span>
-                <span className={styles.energyCount}>{energy}/{maxEnergy}</span>
+            {/* Center - Energy */}
+            <div className={styles.headerSection}>
+                <div className={styles.energyPill}>
+                    <span className={styles.energyBolt}>⚡</span>
+                    <span className={styles.energyText}>{energy}/{maxEnergy}</span>
+                </div>
             </div>
 
-            {/* Test Button */}
-            {onAddTestGold && (
-                <button className={styles.testButton} onClick={onAddTestGold}>
-                    +50🪙
-                </button>
-            )}
+            {/* Right side - Tokens */}
+            <div className={styles.headerSection}>
+                {onAddTestGold && (
+                    <button className={styles.testBtn} onClick={onAddTestGold}>+50</button>
+                )}
+                <div className={styles.tokenPill}>
+                    <span className={styles.tokenCoin}>🪙</span>
+                    <span className={styles.tokenNum}>{fishTokens.toLocaleString()}</span>
+                </div>
+            </div>
 
-            {/* Tokens & Income */}
-            <div className={styles.headerRight}>
-                <div className={styles.tokenDisplay}>
-                    <div className={styles.tokenMain}>
-                        <span className={styles.tokenIcon}>🪙</span>
-                        <span className={styles.tokenAmount}>{fishTokens.toLocaleString()}</span>
-                    </div>
-                    {hourlyIncome > 0 && (
-                        <div className={styles.hourlyIncome}>
-                            +{hourlyIncome}/hr
-                        </div>
-                    )}
+            {/* XP Bar - Bottom of header */}
+            <div className={styles.xpBarFull}>
+                <div className={styles.xpBarTrack}>
+                    <div
+                        className={styles.xpBarProgress}
+                        style={{ width: `${xpProgress.percentage}%` }}
+                    />
                 </div>
             </div>
 
             {/* Level Up Overlay */}
             {levelUpAnimation && (
-                <div className={styles.levelUpOverlay}>
-                    <div className={styles.levelUpContent}>
-                        <span className={styles.levelUpText}>🎉 LEVEL UP!</span>
-                        <span className={styles.levelUpNumber}>Level {level}</span>
+                <div className={styles.levelUpModal}>
+                    <div className={styles.levelUpBox}>
+                        <span className={styles.levelUpEmoji}>🎉</span>
+                        <span className={styles.levelUpTitle}>LEVEL UP!</span>
+                        <span className={styles.levelUpLevel}>Level {level}</span>
                     </div>
                 </div>
             )}

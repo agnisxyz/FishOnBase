@@ -8,7 +8,7 @@ interface IntroScreenProps {
 }
 
 // Fish types for natural variety
-const FISH_TYPES = ['🐟', '🐠', '🐡', '🦈', '🐙', '🐳', '🐬'];
+const FISH_TYPES = ['🐟', '🐠', '🐡', '🦈', '🐬'];
 
 interface SwimmingFish {
     id: number;
@@ -23,23 +23,22 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
     const [fishes, setFishes] = useState<SwimmingFish[]>([]);
     const animationRef = useRef<number | null>(null);
 
-    // Initialize FEWER fish (6) in TOP and BOTTOM areas only
+    // Initialize fish
     useEffect(() => {
         const initialFishes: SwimmingFish[] = Array.from({ length: 6 }, (_, i) => {
             const goingRight = Math.random() > 0.5;
-            // Fish only in top 20% or bottom 20% of screen
             const isTop = i < 3;
             const yPosition = isTop
-                ? 5 + Math.random() * 15  // Top area: 5-20%
-                : 80 + Math.random() * 15; // Bottom area: 80-95%
+                ? 8 + Math.random() * 12
+                : 78 + Math.random() * 12;
 
             return {
                 id: i,
                 emoji: FISH_TYPES[Math.floor(Math.random() * FISH_TYPES.length)],
                 x: Math.random() * 100,
                 y: yPosition,
-                vx: (0.12 + Math.random() * 0.2) * (goingRight ? 1 : -1),
-                size: 20 + Math.random() * 14,
+                vx: (0.08 + Math.random() * 0.12) * (goingRight ? 1 : -1),
+                size: 22 + Math.random() * 10,
             };
         });
         setFishes(initialFishes);
@@ -61,10 +60,10 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
                     vx = -Math.abs(vx);
                 }
 
-                if (Math.random() < 0.008) {
+                if (Math.random() < 0.005) {
                     vx += (Math.random() - 0.5) * 0.02;
-                    vx = Math.max(-0.35, Math.min(0.35, vx));
-                    if (Math.abs(vx) < 0.05) vx = 0.1 * (vx >= 0 ? 1 : -1);
+                    vx = Math.max(-0.25, Math.min(0.25, vx));
+                    if (Math.abs(vx) < 0.04) vx = 0.08 * (vx >= 0 ? 1 : -1);
                 }
 
                 return { ...fish, x, vx };
@@ -97,14 +96,7 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
                     <div className={styles.introWave} />
                 </div>
 
-                {/* Soft Bubbles */}
-                <div className={styles.introBubbles}>
-                    {[...Array(12)].map((_, i) => (
-                        <div key={i} className={styles.introBubble} style={{ '--i': i } as React.CSSProperties} />
-                    ))}
-                </div>
-
-                {/* Swimming Fish - TOP and BOTTOM areas only */}
+                {/* Swimming Fish */}
                 <div className={styles.introFishContainer}>
                     {fishes.map((fish) => (
                         <div
@@ -128,28 +120,27 @@ export default function IntroScreen({ onStart }: IntroScreenProps) {
                 <div className={styles.introLogo}>
                     <span className={styles.introEmoji}>🎣</span>
                     <h1 className={styles.introTitle}>FishOnBase</h1>
-                    <p className={styles.introSubtitle}>Balık tut, token kazan!</p>
+                    <p className={styles.introSubtitle}>Catch fish, earn tokens!</p>
                 </div>
 
                 <div className={styles.introFeatures}>
                     <div className={styles.introFeature}>
                         <span className={styles.featureIcon}>🐟</span>
-                        <span className={styles.featureText}>7 Balık Türü</span>
+                        <span className={styles.featureText}>7 Species</span>
                     </div>
                     <div className={styles.introFeature}>
                         <span className={styles.featureIcon}>🪙</span>
-                        <span className={styles.featureText}>FISH Token</span>
+                        <span className={styles.featureText}>Tokens</span>
                     </div>
                     <div className={styles.introFeature}>
-                        <span className={styles.featureIcon}>🛒</span>
-                        <span className={styles.featureText}>Yükseltmeler</span>
+                        <span className={styles.featureIcon}>⬆️</span>
+                        <span className={styles.featureText}>Upgrades</span>
                     </div>
                 </div>
 
-                {/* START BUTTON */}
                 <button className={styles.introButton} onClick={onStart}>
-                    <span className={styles.introButtonText}>Başla</span>
-                    <span className={styles.introButtonIcon}>→</span>
+                    <span className={styles.introButtonText}>Start Fishing</span>
+                    <span className={styles.introButtonIcon}>🎣</span>
                 </button>
             </div>
         </div>
